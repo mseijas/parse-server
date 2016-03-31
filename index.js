@@ -33,11 +33,11 @@ var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
-app.get('/', function(req, res) {
-  res.status(200).send('I dream of being a web site.');
-});
+// app.get('/', function(req, res) {
+//   res.status(200).send('I dream of being a web site.');
+// });
 
-app.get('/test', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 

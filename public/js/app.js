@@ -1,6 +1,6 @@
 // Parse Config
 Parse.initialize("J5OJzQnINKZWaRrek8xt")
-Parse.serverURL = 'http://www.tailortags.com/parse'
+Parse.serverURL = 'https://www.tailortags.com/parse'
 var ClothingType = Parse.Object.extend("Clothing_Type")
 var ClothingImage = Parse.Object.extend("AI_ClothingType_Image")
 var SurveyReponse = Parse.Object.extend("AI_SurveyResponse")

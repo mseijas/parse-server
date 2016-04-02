@@ -1,0 +1,33 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <img class="clothingImage"/>
+    <div>
+      <p class="temperature"></p>
+    </div>
+    <div>
+      <p class="weatherCondition"></p>
+    </div>
+    <div>
+      <a class="btn-next" onClick="recordYes()">Yes</a>&nbsp;&nbsp;
+      <a class="btn-next" onClick="recordNo()">No</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a class="btn-next" onClick="generateQuestion()">Next</a>
+    </div>
+  </div>
+</body>
+
+</html>

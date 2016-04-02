@@ -40,6 +40,7 @@ function queryClothingTypes() {
 }
 
 function generateQuestion() {
+  showPreloader()
   generateRandomClothing()
   setImageForClothing(clothingType)
   generateRandomTemp()
@@ -55,7 +56,7 @@ function generateRandomClothing() {
 }
 
 function generateRandomTemp() {
-  var random = Math.round((Math.random() * 38) + -15)
+  var random = Math.floor((Math.random() * 38) + -15)
   $(".temperature").text(random + " °C")
 
   temperature = random
@@ -83,6 +84,10 @@ function setImageForClothing(randomClothing) {
 
 function setClothingImage(clothingImage) {
   $(".clothingImage")[0].src = clothingImage.get("image").url()
+}
+
+function showPreloader() {
+  $(".clothingImage")[0].src = "img/preloader.gif"
 }
 
 function recordYes() {

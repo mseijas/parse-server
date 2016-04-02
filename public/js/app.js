@@ -87,7 +87,7 @@ function setClothingImage(clothingImage) {
 }
 
 function showPreloader() {
-  $(".clothingImage")[0].src = "img/preloader.gif"
+  $(".clothingImage")[0].src = "/static/img/preloader.gif"
 }
 
 function recordYes() {

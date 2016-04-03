@@ -47,7 +47,6 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	});
 });
 
-
 Parse.Cloud.define('markClosetItemInUse', function(request, response) {
 	var closetItemId = request.params.closetItemId
 
@@ -63,6 +62,38 @@ Parse.Cloud.define('markClosetItemInUse', function(request, response) {
 		    }
 
 		    closetItem.set("inUse", true)
+		    closetItem.set("isActive", true)
+
+		    closetItem.save(null, {
+			    success: function() {
+			      response.success()
+			    },
+			    error: function(error) {
+			      response.error(error)
+			    }
+			})
+	    },
+	    error: function(error) {
+			response.error(error)
+	    }
+	});
+});
+
+Parse.Cloud.define('markClosetItemNotInUse', function(request, response) {
+	var closetItemId = request.params.closetItemId
+
+	var query = new Parse.Query("User_ClosetItem")
+	query.equalTo("objectId", closetItemId)
+
+	query.find({
+	    success: function(results) {
+		    var closetItem = results[0]
+		    if (closetItem == null) {
+		    	response.error("ClosetItem could not be found in database.")
+		    	return
+		    }
+
+		    closetItem.set("inUse", false)
 		    closetItem.set("isActive", true)
 
 		    closetItem.save(null, {

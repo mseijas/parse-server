@@ -21,14 +21,14 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 
 	query.find({
 	    success: function(results) {
-		    var clothing = results[0]
-		    if (clothing == null) {
+		    var clothingResult = results[0]
+		    if (clothingResult == null) {
 		    	response.error("Clothing could not be found in database.")
 		    	return;
 		    }
 
 		    var user = User.createWithoutData(userId)
-		    var clothing = Clothing.createWithoutData(clothing.id)
+		    var clothing = Clothing.createWithoutData(clothingResult.id)
 
 		    var closetItem = new ClothingType()
 		    closetItem.set("user", user)

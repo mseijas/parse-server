@@ -18,14 +18,14 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	query.equalTo("beaconMinor", beaconMinor)
 	query.matchesQuery("brand", brandQuery)
 
-	query.includeKey("brand")
-    query.includeKey("category")
-    query.includeKey("colorType")
-    query.includeKey("colorType.category")
-    query.includeKey("colors")
-    query.includeKey("season")
-    query.includeKey("season.type")
-            
+	query.include("brand")
+    query.include("category")
+    query.include("colorType")
+    query.include("colorType.category")
+    query.include("colors")
+    query.include("season")
+    query.include("season.type")
+
 	query.find({
 	    success: function(results) {
 		    var clothing = results[0]

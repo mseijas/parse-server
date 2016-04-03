@@ -26,7 +26,7 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 		    	return;
 		    }
 
-		    var user = MyClassName.createWithoutData(userId)
+		    var user = User.createWithoutData(userId)
 
 		    var closetItem = new ClothingType()
 		    closetItem.set("user", user)

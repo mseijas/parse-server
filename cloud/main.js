@@ -5,6 +5,7 @@ Parse.Cloud.define('hello', function(req, res) {
 
 Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	var User = Parse.Object.extend("_User")
+	var Clothing = Parse.Object.extend("Clothing")
 	var ClothingType = Parse.Object.extend("User_ClosetItem")
 
 	var userId = request.params.userId
@@ -18,14 +19,6 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	query.equalTo("beaconMinor", beaconMinor)
 	query.matchesQuery("brand", brandQuery)
 
-	query.include("brand")
-    query.include("category")
-    query.include("colorType")
-    query.include("colorType.category")
-    query.include("colors")
-    query.include("season")
-    query.include("season.type")
-
 	query.find({
 	    success: function(results) {
 		    var clothing = results[0]
@@ -35,6 +28,7 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 		    }
 
 		    var user = User.createWithoutData(userId)
+		    var clothing = Clothing.createWithoutData(clothing.get("objectId"))
 
 		    var closetItem = new ClothingType()
 		    closetItem.set("user", user)

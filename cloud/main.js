@@ -11,12 +11,16 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	var beaconMajor = request.params.beaconMajor
 	var beaconMinor = request.params.beaconMinor
 
+	console.log("userId: " + userId)
+	console.log("beaconMajor: " + beaconMajor)
+	console.log("beaconMinor: " + beaconMinor)
+	
 	var brandQuery = new Parse.Query("Clothing_Brand")
 	brandQuery.equalTo("beaconMajor", beaconMajor)
 
 	var clothingQuery = new Parse.Query("Clothing")
 	clothingQuery.equalTo("beaconMinor", beaconMinor)
-	clothingQuery.matchesQuery("brand", brandQuery)
+	// clothingQuery.matchesQuery("brand", brandQuery)
 
 	clothingQuery.find({
 	    success: function(results) {

@@ -3,7 +3,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 
-Parse.Cloud.define('addClosetItemForUser', function(req, res) {
+Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	var User = Parse.Object.extend("_User")
 	var ClothingType = Parse.Object.extend("User_ClosetItem")
 

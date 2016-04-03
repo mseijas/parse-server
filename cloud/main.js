@@ -31,11 +31,8 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 		    var closetItem = new ClothingType()
 		    closetItem.set("user", user)
 		    closetItem.set("clothing", clothing)
+		    closetItem.set("inUse", false)
 		    closetItem.set("isActive", true)
-
-		    console.log("*** Created ClosetItem ***")
-		    console.log(closetItem)
-		    console.log("**************************")
 
 		    closetItem.save(null, {
 			    success: function(closetItem) {
@@ -45,8 +42,6 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 			      response.error(error)
 			    }
 			})
-
-			response.success(results)
 	    },
 	    error: function(error) {
 			response.error(error)

@@ -11,10 +11,6 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 	var beaconMajor = request.params.beaconMajor
 	var beaconMinor = request.params.beaconMinor
 
-	console.log("userId: " + userId)
-	console.log("beaconMajor: " + beaconMajor)
-	console.log("beaconMinor: " + beaconMinor)
-
 	var brandQuery = new Parse.Query("Clothing_Brand")
 	brandQuery.equalTo("beaconMajor", beaconMajor)
 
@@ -30,22 +26,26 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 		    	return;
 		    }
 
-		 //    var user = MyClassName.createWithoutData(userId)
+		    var user = MyClassName.createWithoutData(userId)
 
-		 //    var closetItem = new ClothingType()
-		 //    closetItem.set("user", user)
-		 //    closetItem.set("clothing", clothing)
-		 //    closetItem.set("isActive", true)
+		    var closetItem = new ClothingType()
+		    closetItem.set("user", user)
+		    closetItem.set("clothing", clothing)
+		    closetItem.set("isActive", true)
 
-		 //    closetItem.save(null, {
-			//     success: function(closetItem) {
-			//       response.success(closetItem)
-			//     },
-			//     error: function(error) {
-			//       response.error(error)
-			//     }
-			// })
-			
+		    console.log("*** Created ClosetItem ***")
+		    console.log(closetItem)
+		    console.log("**************************")
+
+		    closetItem.save(null, {
+			    success: function(closetItem) {
+			      response.success(closetItem)
+			    },
+			    error: function(error) {
+			      response.error(error)
+			    }
+			})
+
 			response.success(results)
 	    },
 	    error: function(error) {

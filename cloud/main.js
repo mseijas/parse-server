@@ -56,13 +56,13 @@ Parse.Cloud.define('markClosetItemInUse', function(request, response) {
 
 	query.find({
 	    success: function(results) {
-		    var closetItemResult = results[0]
-		    if (closetItemResult == null) {
+		    var closetItem = results[0]
+		    if (closetItem == null) {
 		    	response.error("ClosetItem could not be found in database.")
 		    	return
 		    }
 
-		    closetItemResult.set("inUse", true)
+		    closetItem.set("inUse", true)
 		    closetItem.set("isActive", true)
 
 		    closetItem.save(null, {

@@ -4,9 +4,10 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 Parse.Cloud.define('addClosetItemForUser', function(req, res) {
+	var User = Parse.Object.extend("_User")
 	var ClothingType = Parse.Object.extend("User_ClosetItem")
 
-	var user = request.params.user
+	var userId = request.params.userId
 	var beaconMajor = request.params.beaconMajor
 	var beaconMinor = request.params.beaconMinor
 
@@ -21,10 +22,12 @@ Parse.Cloud.define('addClosetItemForUser', function(req, res) {
 	    success: function(results) {
 		    var clothing = results[0]
 		    if (clothing == null) {
-		    	response.error("Clothing could not be found in database.");
+		    	response.error("Clothing could not be found in database.")
 		    	return;
 		    }
 
+		    var user = MyClassName.createWithoutData(userId)
+		    
 		    var closetItem = new ClothingType()
 		    closetItem.set("user", user)
 		    closetItem.set("clothing", clothing)
@@ -35,12 +38,12 @@ Parse.Cloud.define('addClosetItemForUser', function(req, res) {
 			      response.success(closetItem)
 			    },
 			    error: function(error) {
-			      response.error(error);
+			      response.error(error)
 			    }
 			})
 	    },
 	    error: function(error) {
-			response.error(error);
+			response.error(error)
 	    }
 	});
 });

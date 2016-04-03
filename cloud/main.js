@@ -20,27 +20,28 @@ Parse.Cloud.define('addClosetItemForUser', function(req, res) {
 
 	query.find({
 	    success: function(results) {
-		    var clothing = results[0]
-		    if (clothing == null) {
-		    	response.error("Clothing could not be found in database.")
-		    	return;
-		    }
+		 //    var clothing = results[0]
+		 //    if (clothing == null) {
+		 //    	response.error("Clothing could not be found in database.")
+		 //    	return;
+		 //    }
 
-		    var user = MyClassName.createWithoutData(userId)
-		    
-		    var closetItem = new ClothingType()
-		    closetItem.set("user", user)
-		    closetItem.set("clothing", clothing)
-		    closetItem.set("isActive", true)
+		 //    var user = MyClassName.createWithoutData(userId)
 
-		    closetItem.save(null, {
-			    success: function(closetItem) {
-			      response.success(closetItem)
-			    },
-			    error: function(error) {
-			      response.error(error)
-			    }
-			})
+		 //    var closetItem = new ClothingType()
+		 //    closetItem.set("user", user)
+		 //    closetItem.set("clothing", clothing)
+		 //    closetItem.set("isActive", true)
+
+		 //    closetItem.save(null, {
+			//     success: function(closetItem) {
+			//       response.success(closetItem)
+			//     },
+			//     error: function(error) {
+			//       response.error(error)
+			//     }
+			// })
+			response.success(results)
 	    },
 	    error: function(error) {
 			response.error(error)

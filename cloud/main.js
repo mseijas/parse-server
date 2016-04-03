@@ -8,7 +8,7 @@ Parse.Cloud.define('addClosetItemForUser', function(req, res) {
 
 	var user = request.params.user
 	var beaconMajor = request.params.beaconMajor
-	var beaconMinor = request.params.beaconMajor
+	var beaconMinor = request.params.beaconMinor
 
 	var brandQuery = new Parse.Query("Clothing_Brand")
 	brandQuery.equalTo("beaconMajor", beaconMajor)
@@ -21,7 +21,7 @@ Parse.Cloud.define('addClosetItemForUser', function(req, res) {
 	    success: function(results) {
 		    var clothing = results[0]
 		    if (clothing == null) {
-		    	response.error("Clothing could not be found in databse.");
+		    	response.error("Clothing could not be found in database.");
 		    	return;
 		    }
 

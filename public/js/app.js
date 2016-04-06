@@ -3,21 +3,23 @@ Parse.initialize("J5OJzQnINKZWaRrek8xt")
 Parse.serverURL = 'https://tailortags.herokuapp.com/parse'
 var ClothingType = Parse.Object.extend("Clothing_Type")
 var ClothingImage = Parse.Object.extend("AI_ClothingType_Image")
-var SurveyReponse = Parse.Object.extend("AI_SurveyResponse")
+var SurveyReponse = Parse.Object.extend("AI_Outsourced_Score")
 
 
 // Vars
 var clothingTypes = []
-var weatherConditions = ["sun", "clouds", "rain", "snow"]
+var tempRanges = [[-15, -5], [-6, 4], [5, 10], [11, 16], [17, 22], [22, 32], [33, 38]]
+var weatherConditions = ["sunny", "cloudy", "rain", "snow"]
 var weatherConditionIcons = {
-  "sun" : "☀️",
-  "clouds": "⛅",
-  "rain": "🌧",
-  "snow": "❄️"
+  "sunny" : "/static/img/sunny.png",
+  "cloudy": "/static/img/cloudy.png",
+  "rain": "/static/img/rain.png",
+  "snow": "/static/img/snow.png"
 }
 
 var clothingType
 var temperature
+var temperatureRange
 var weatherCondition
 
 
@@ -26,6 +28,10 @@ queryClothingTypes()
 
 
 // Functions
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 function queryClothingTypes() {
   var query = new Parse.Query(ClothingType)
   query.find({
@@ -56,17 +62,26 @@ function generateRandomClothing() {
 }
 
 function generateRandomTemp() {
-  var random = Math.floor((Math.random() * 38) + -15)
-  $(".temperature").text(random + " °C")
+  var randomTempRange = Math.floor((Math.random() * tempRanges.length) + 0)
 
-  temperature = random
+  var minRange = tempRanges[randomTempRange][0]
+  var maxRange = tempRanges[randomTempRange][1]
+
+  var random = getRandomInt(minRange, maxRange)
+  var tempC = random
+  var tempF = Math.round(random * 1.8 + 32)
+
+  $(".temperature").text(tempF + " °F\n" + tempC + " °C")
+
+  temperature = tempC
+  temperatureRange = tempRanges[randomTempRange]
 }
 
 function generateRandomWeather() {
   var random = Math.floor((Math.random() * weatherConditions.length) + 0)
-  $(".weatherCondition").text(weatherConditions[random])
 
   weatherCondition = weatherConditions[random]
+  setWeatherConditionImage(weatherConditionIcons[weatherCondition])
 }
 
 function setImageForClothing(randomClothing) {
@@ -80,6 +95,10 @@ function setImageForClothing(randomClothing) {
       alert("Error: " + error.code + " " + error.message)
     }
   })
+}
+
+function setWeatherConditionImage(weatherConditionImage) {
+  $(".weatherConditionImage")[0].src = weatherConditionImage
 }
 
 function setClothingImage(clothingImage) {
@@ -110,7 +129,8 @@ function recordYes() {
 function recordNo() {
   var response = new SurveyReponse()
   response.set("clothingType", clothingType)
-  response.set("temperature", temperature)
+  response.set("temp", temperature)
+  response.set("tempRange", temperatureRange)
   response.set("weatherCondition", weatherCondition)
   response.set("wouldWear", false)
 

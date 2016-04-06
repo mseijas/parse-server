@@ -22,12 +22,29 @@ body {
 	padding-left: 30px;
 }
 
+.title-row {
+	margin-top: 4rem;
+}
+
+.title {
+	margin: auto;
+	text-align: center;
+	font-size: 2em;
+}
+
+.button {
+	height: 45px !important;
+	padding: 0 42px !important;
+	font-size: 12px !important;
+	line-height: 44px !important;
+}
+
 .button-primary {
 	background-color: #ffb604 !important;
 	border-color: #ffb604 !important;
 }
 
-.clothingImage {
+.clothingImage, .weatherConditionImage {
 	max-height: 100%;
 }
 
@@ -35,19 +52,11 @@ body {
 	font-size: 3rem;
 }
 
-.question-box {
-	background-color: white;
-	border-radius: 2px;
-	height: 26em;
-	margin-top: 5em;
-	padding: 4em;
+.temperature {
+	white-space: pre-line;
 }
 
-.clothing-box {
-	line-height: 17em;
-}
-
-.temperature-box, .condition-box {
+.clothing-box, .condition-box {
 	line-height: 17em;
 }
 
@@ -62,11 +71,75 @@ body {
 }
 
 .main-container {
-	margin-top: 8em;
+	margin-top: 4.6em;
 	background: #f3f3f3;
     text-align: center;
     border-radius: 4px;
     font-size: 1rem;
     line-height: 30px;
     margin-bottom: 8em;
+}
+
+.question-box {
+	background-color: white;
+	border-radius: 2px;
+	height: 15em;
+	margin-top: 3em;
+	padding: 2em;
+}
+
+.temperature-box {
+	line-height: 5.5em;
+}
+
+.button-desktop {
+	display: none
+}
+
+.button-mobile {
+	display: block
+}
+
+.button-mobile .button {
+	height: 60px !important;
+	padding: 0 42px !important;
+	font-size: 14px !important;
+	line-height: 60px !important;
+}
+
+.button-mobile-column {
+	padding: 0.6em 5em;
+	margin-top: -1em;
+}
+
+@media (min-width: 750px) {
+	.main-container {
+		margin-top: 4.6em;
+		background: #f3f3f3;
+	    text-align: center;
+	    border-radius: 4px;
+	    font-size: 1rem;
+	    line-height: 30px;
+	    margin-bottom: 8em;
+	}
+
+	.question-box {
+		background-color: white;
+		border-radius: 2px;
+		height: 26em;
+		margin-top: 5em;
+		padding: 4em;
+	}
+
+	.temperature-box {
+		line-height: 8.5em;
+	}
+
+	.button-desktop {
+		display: block
+	}
+
+	.button-mobile {
+		display: none
+	}
 }

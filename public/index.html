@@ -20,10 +20,16 @@
     <p class="logo">Tailor</p>
   </div>
 
-  <div class="container">
+  <div class="container" name="top">
+    <div class="row">
+      <div class="twelve column">
+        <div class="row title-row">
+          <p class="title">Would you wear this?</p>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="twelve column main-container">
-
         <div class="row main-row">
           <div class="one-third column question-box clothing-box">
             <img class="clothingImage u-max-full-width"/>
@@ -31,16 +37,36 @@
           <div class="one-third column question-box temperature-box">
             <p class="temperature"></p>
           </div>
-          <div class="one-third column question-box condition-box">
-            <p class="weatherCondition"></p>
+          <div class="one-third column question-box condition-box" style="padding: 2.6em 4em">
+          <img class="weatherConditionImage u-max-full-width"/>
           </div>
         </div>
 
-        <div class="row button-row">
-          <div class="twelve column">
-            <a class="button button-primary" onClick="recordYes()">Yes</a>&nbsp;&nbsp;
-            <a class="button button-primary" onClick="recordNo()">No</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="button" onClick="generateQuestion()" style="background-color: #fff">Next</a>
+        <div class="row button-row button-desktop">
+          <div class="twelve column" style="text-align: center">
+            <a class="button button-primary" href="#top" onClick="recordYes()">Yes</a>&nbsp;&nbsp;
+            <a class="button button-primary" href="#top" onClick="recordNo()">No</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="button" href="#top" onClick="generateQuestion()" style="background-color: #fff">Next</a>
+          </div>
+        </div>
+
+        <div class="row button-row button-mobile">
+          <div class="twelve column" style="text-align: center">
+          <div class="row">
+            <div class="twelve column button-mobile-column">
+              <a class="button button-primary u-full-width" href="#top" onClick="recordYes()">Yes</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve column button-mobile-column">
+              <a class="button button-primary u-full-width" href="#top" onClick="recordNo()">No</a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve column button-mobile-column">
+              <a class="button u-full-width" href="#top" onClick="generateQuestion()" style="background-color: #fff">Next</a>
+            </div>
+          </div>
           </div>
         </div>
 

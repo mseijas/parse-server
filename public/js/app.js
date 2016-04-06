@@ -116,7 +116,8 @@ function showPreloader() {
 function recordYes() {
   var response = new SurveyReponse()
   response.set("clothingType", clothingType)
-  response.set("temperature", temperature)
+  response.set("temp", temperature)
+  response.set("tempRange", temperatureRange)
   response.set("weatherCondition", weatherCondition)
   response.set("wouldWear", true)
 

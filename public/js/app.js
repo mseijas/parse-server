@@ -82,6 +82,11 @@ function generateRandomWeather() {
 
   weatherCondition = weatherConditions[random]
   setWeatherConditionImage(weatherConditionIcons[weatherCondition])
+
+  if weatherConditions[random] == snow && temperature > 0 {
+    console.log("snow in summer!")
+    generateQuestion()
+  }
 }
 
 function setImageForClothing(randomClothing) {

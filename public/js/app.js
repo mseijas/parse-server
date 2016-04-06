@@ -8,7 +8,7 @@ var SurveyReponse = Parse.Object.extend("AI_Outsourced_Score")
 
 // Vars
 var clothingTypes = []
-var tempRanges = [[-15, -5], [-6, 4], [5, 10], [11, 16], [17, 22], [22, 32], [33, 38]]
+var tempRanges = [[-15, -5], [-4, 4], [5, 10], [11, 16], [17, 22], [23, 33], [34, 38]]
 var weatherConditions = ["sunny", "cloudy", "rain", "snow"]
 var weatherConditionIcons = {
   "sunny" : "/static/img/sunny.png",

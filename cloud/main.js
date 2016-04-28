@@ -1,7 +1,8 @@
 
 var User = Parse.Object.extend("_User")
 var Clothing = Parse.Object.extend("Clothing")
-var ClothingType = Parse.Object.extend("User_ClosetItem")
+var ClothingCategory = Parse.Object.extend("Clothing_Category")
+var ClosetItem = Parse.Object.extend("User_ClosetItem")
 var UserHistory = Parse.Object.extend("User_History")
 var UserAction = Parse.Object.extend("User_Action")
 
@@ -29,7 +30,7 @@ Parse.Cloud.define('addClosetItemForUser', function(request, response) {
 		    var user = User.createWithoutData(userId)
 		    var clothing = Clothing.createWithoutData(clothingResult.id)
 
-		    var closetItem = new ClothingType()
+		    var closetItem = new ClosetItem()
 		    closetItem.set("user", user)
 		    closetItem.set("clothing", clothing)
 		    closetItem.set("inUse", false)
@@ -135,4 +136,27 @@ Parse.Cloud.define('markClosetItemNotInUse', function(request, response) {
 			response.error(error)
 	    }
 	});
+});
+
+Parse.Cloud.define('requestRandomOutfitRecommendation', function(request, response) {
+	var userId = request.params.userId
+	var user = User.createWithoutData(userId)
+
+	var topCategory = ClothingCategory.createWithoutData("iGYsr2ssJu")
+	var bottomCategory = ClothingCategory.createWithoutData("MRqdrV8K9f")
+	var outerwearCategory = ClothingCategory.createWithoutData("STuDH7Llc1")
+
+	var queryTops = new Parse.Query("User_ClosetItem")
+	queryTops.equalTo("user", user)
+	queryTops.equalTo("clothing.category", topCategory)
+
+	queryTops.find({
+	    success: function(results) {
+		    response.success(results)
+	    },
+	    error: function(error) {
+			response.error(error)
+	    }
+	});
+
 });

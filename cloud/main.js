@@ -142,21 +142,89 @@ Parse.Cloud.define('requestRandomOutfitRecommendation', function(request, respon
 	var userId = request.params.userId
 	var user = User.createWithoutData(userId)
 
-	var topCategory = ClothingCategory.createWithoutData("iGYsr2ssJu")
-	var bottomCategory = ClothingCategory.createWithoutData("MRqdrV8K9f")
-	var outerwearCategory = ClothingCategory.createWithoutData("STuDH7Llc1")
-
-	var queryTops = new Parse.Query("User_ClosetItem")
+	var queryTops = queryForTopsCategory()
+	var queryBottoms = queryForBottomsCategory()
 	queryTops.equalTo("user", user)
-	queryTops.equalTo("clothing.category", topCategory)
+	queryBottoms.equalTo("user", user)
 
-	queryTops.find({
-	    success: function(results) {
-		    response.success(results)
-	    },
-	    error: function(error) {
-			response.error(error)
-	    }
-	});
+	var allTops
+	var allBottoms
 
+	queryTops.find().then(function(tops) {
+		allTops = tops
+		return queryBottoms.find()
+	}).then(function(bottoms) {
+		allBottoms = bottoms
+		return
+	}).then(function() {
+
+		var outfit1 = randomOutfitFrom(allTops, allBottoms)
+		var outfit2 = randomOutfitFrom(allTops, allBottoms)
+		var outfit3 = randomOutfitFrom(allTops, allBottoms)
+
+		var result = [outfit1, outfit2, outfit3]
+
+		response.success(result)
+	}, function(error) {
+		response.error(error)
+	})
 });
+
+function randomOutfitFrom(tops, bottoms) {
+	var randomTop = getRandomInt(0, tops.length)
+	var randomBottom = getRandomInt(0, bottoms.length)
+
+	return {
+				"top": tops[randomTop],
+				"bottom": bottoms[randomBottom]
+			}
+}
+
+function queryForTopsCategory() {
+	var topCategory = ClothingCategory.createWithoutData("iGYsr2ssJu")
+	var clothingQuery = new Parse.Query("Clothing")
+
+	var topCategoryQuery = new Parse.Query("Clothing_Category")
+	topCategoryQuery.equalTo("objectId", "iGYsr2ssJu")
+	
+	clothingQuery.matchesQuery("category", topCategoryQuery)
+	
+	var queryTops = new Parse.Query("User_ClosetItem")
+	queryTops.matchesQuery("clothing", clothingQuery)
+
+	return queryTops
+}
+
+function queryForBottomsCategory() {
+	var bottomCategory = ClothingCategory.createWithoutData("MRqdrV8K9f")
+	var clothingQuery = new Parse.Query("Clothing")
+
+	var topCategoryQuery = new Parse.Query("Clothing_Category")
+	topCategoryQuery.equalTo("objectId", "MRqdrV8K9f")
+	
+	clothingQuery.matchesQuery("category", topCategoryQuery)
+	
+	var queryTops = new Parse.Query("User_ClosetItem")
+	queryTops.matchesQuery("clothing", clothingQuery)
+
+	return queryTops
+}
+
+function queryForOuterwearCategory() {
+	var outerwearCategory = ClothingCategory.createWithoutData("STuDH7Llc1")
+	var clothingQuery = new Parse.Query("Clothing")
+
+	var topCategoryQuery = new Parse.Query("Clothing_Category")
+	topCategoryQuery.equalTo("objectId", "STuDH7Llc1")
+	
+	clothingQuery.matchesQuery("category", topCategoryQuery)
+	
+	var queryTops = new Parse.Query("User_ClosetItem")
+	queryTops.matchesQuery("clothing", clothingQuery)
+
+	return queryTops
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}

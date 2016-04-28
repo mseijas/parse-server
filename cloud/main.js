@@ -171,8 +171,8 @@ Parse.Cloud.define('requestRandomOutfitRecommendation', function(request, respon
 });
 
 function randomOutfitFrom(tops, bottoms) {
-	var randomTop = getRandomInt(0, tops.length)
-	var randomBottom = getRandomInt(0, bottoms.length)
+	var randomTop = Math.floor((Math.random() * tops.length) + 0)
+	var randomBottom = Math.floor((Math.random() * bottoms.length) + 0)
 
 	return {
 				"top": tops[randomTop],

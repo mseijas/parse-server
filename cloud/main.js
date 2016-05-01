@@ -221,14 +221,14 @@ Parse.Cloud.define('requestAIOutfitRecommendation', function(request, response) 
 
       suggestions.push(newSuggestion)
 
-      // if (suggestions.length > 0) {
-      //   for (i in suggestions) {
-      //     var suggestion = suggestions[i]
-      //     if (suggestion["top"].id == newSuggestion["top"].id && suggestion["bottom"].id == newSuggestion["top"].id) {
-      //       suggestions.pop()
-      //     }
-      //   }
-      // }
+      if (suggestions.length > 0) {
+        for (i in suggestions) {
+          var suggestion = suggestions[i]
+          if (suggestion["top"].id == newSuggestion["top"].id && suggestion["bottom"].id == newSuggestion["top"].id) {
+            suggestions.pop()
+          }
+        }
+      }
     }
     
     // console.log(suggestions)

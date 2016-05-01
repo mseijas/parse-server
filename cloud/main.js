@@ -177,7 +177,7 @@ Parse.Cloud.define('requestRandomOutfitRecommendation', function(request, respon
 });
 
 Parse.Cloud.define('requestAIOutfitRecommendation', function(request, response) {
-	var userId = request.params.userId
+var userId = request.params.userId
   var user = User.createWithoutData(userId)
 
   var weatherCondition = request.params.weatherCondition
@@ -221,6 +221,7 @@ Parse.Cloud.define('requestAIOutfitRecommendation', function(request, response) 
       suggestions.push(newSuggestion)
     }
     
+    console.log(suggestions)
     response.success(suggestions)
     
   }, function(error) {

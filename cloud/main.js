@@ -217,21 +217,10 @@ Parse.Cloud.define('requestAIOutfitRecommendation', function(request, response) 
     var suggestions = []
 
     for (var i = 0; i < 3; i++) {
-      var newSuggestion = generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear)
-
+      var newSuggestion = generateUniqueSuggestion(aiScores, allTops, allBottoms, allOuterwear, suggestions)
       suggestions.push(newSuggestion)
-
-      if (suggestions.length > 0) {
-        for (i in suggestions) {
-          var suggestion = suggestions[i]
-          if (suggestion["top"].id == newSuggestion["top"].id && suggestion["bottom"].id == newSuggestion["top"].id) {
-            console.log("DUPLICATED SUGGESTION!!!!")
-          }
-        }
-      }
     }
     
-    // console.log(suggestions)
     response.success(suggestions)
     
   }, function(error) {
@@ -243,6 +232,22 @@ Parse.Cloud.define('requestAIOutfitRecommendation', function(request, response) 
 
 
 // ** AI FUNCTIONS
+
+function generateUniqueSuggestion(aiScores, allTops, allBottoms, allOuterwear, suggestions) {
+  var newSuggestion = generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear)
+
+  if (suggestions.length > 0) {
+    for (i in suggestions) {
+      var suggestion = suggestions[i]
+      if (suggestion["top"].id == newSuggestion["top"].id && suggestion["bottom"].id == newSuggestion["bottom"].id) {
+          console.log("DUPLICATED OUTFIT!")
+          return generateUniqueSuggestion(aiScores, allTops, allBottoms, allOuterwear, suggestions)
+        }
+    }
+  }
+
+  return newSuggestion
+}
 
 function generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear) {
   var topScores = scoresForClosetItems(allTops, aiScores)

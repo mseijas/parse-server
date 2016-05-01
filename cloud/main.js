@@ -260,14 +260,21 @@ function generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear) {
   var outerwear
 
   if (aiScores[0].get("tempRange")[0] >= 17) {
+  	console.log("tempRange >= 17")
+
     var shouldOfferOuterwear = getRandomInt(0,1)
+    console.log("shouldOfferOuterwear: " + shouldOfferOuterwear)
+
     if (shouldOfferOuterwear == 1) {
+    	console.log("shouldOfferOuterwear == 1")
       outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
     }
   } else {
+  	console.log("tempRange < 17")
   	outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
   }
 
+  console.log(suggestion)
   var suggestion = {
         "top": top,
         "bottom": bottom,

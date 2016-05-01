@@ -221,7 +221,6 @@ var userId = request.params.userId
       suggestions.push(newSuggestion)
     }
     
-    console.log(suggestions)
     response.success(suggestions)
     
   }, function(error) {
@@ -270,7 +269,6 @@ function generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear) {
 	  }
   } 
 
-  console.log(suggestion)
   var suggestion = {
         "top": top,
         "bottom": bottom,

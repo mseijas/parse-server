@@ -259,21 +259,16 @@ function generateSuggestionFor(aiScores, allTops, allBottoms, allOuterwear) {
   var bottom = generateClothingSuggestionFrom(bottomScores)[0]
   var outerwear
 
-  // if (aiScores[0].get("tempRange")[0] >= 17) {
-  // 	console.log("tempRange >= 17")
-
-  //   var shouldOfferOuterwear = getRandomInt(0,1)
-  //   console.log("shouldOfferOuterwear: " + shouldOfferOuterwear)
-
-  //   if (shouldOfferOuterwear == 1) {
-  //   	console.log("shouldOfferOuterwear == 1")
-  //     outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
-  //   }
-  // } else {
-  // 	console.log("tempRange < 17")
-  // 	outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
-  // }
-  outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
+  if (outerwearScores > 0) {
+  	if (aiScores[0].get("tempRange")[0] >= 17) {
+	    var shouldOfferOuterwear = getRandomInt(0,1)
+	    if (shouldOfferOuterwear == 1) {
+	      outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
+	    }
+	  } else {
+	  	outerwear = generateClothingSuggestionFrom(outerwearScores)[0]
+	  }
+  } 
 
   console.log(suggestion)
   var suggestion = {

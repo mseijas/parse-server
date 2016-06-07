@@ -1,0 +1,203 @@
+body {
+	background-color: rgba(249, 249, 249, 0.4);
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+}
+
+p {
+	font-weight: 100;
+}
+
+.menu {
+	width: 100%;
+	height: 60px;
+	background-color: #fff;
+	border-width: 0px 0px 1px 0px;
+	border-style: solid;
+	border-color: #ddddde;
+	box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.08);
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.05);
+}
+
+.logo {
+	padding-top: 11px;
+	padding-left: 30px;
+	float: left;
+	font-size: 24px;
+}
+
+a {
+	color: #ffb604;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffb604;
+	text-decoration: none;
+}
+
+.clueless-link {
+	color: #6D6D6D;
+}
+
+.clueless-link:hover {
+	color: #6D6D6D;
+	text-decoration: underline;
+}
+
+.about {
+	float: right;
+	padding-top: 17px;
+	padding-right: 30px;
+}
+
+.about-link {
+	text-decoration: none;
+	color: #ABAFB1;
+}
+
+.about-link:hover {
+	text-decoration: none;
+	color: #ffb604;
+}
+
+.info-copy {
+	color: #949494;
+	padding: 2rem 0;
+}
+
+.info-question {
+	margin: 0;
+	padding-top: 2em;
+}
+
+.title-row {
+	margin-top: 4rem;
+}
+
+.title {
+	margin: auto;
+	font-size: 2em;
+}
+
+.center-aligned {
+	text-align: center;
+}
+
+.button {
+	height: 45px !important;
+	padding: 0 42px !important;
+	font-size: 12px !important;
+	line-height: 44px !important;
+}
+
+.button-primary {
+	background-color: #ffb604 !important;
+	border-color: #ffb604 !important;
+}
+
+.clothingImage, .weatherConditionImage {
+	max-height: 100%;
+}
+
+.temperature, .weatherCondition {
+	font-size: 3rem;
+}
+
+.temperature {
+	white-space: pre-line;
+}
+
+.clothing-box, .condition-box {
+	line-height: 17em;
+}
+
+.main-row {
+	padding-left: 5em;
+	padding-right: 5em;
+	padding-bottom: 8em;
+}
+
+.button-row {
+	padding-bottom: 6.5em;
+}
+
+.main-container {
+	margin-top: 4.6em;
+	background: #f3f3f3;
+    text-align: center;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 30px;
+    margin-bottom: 8em;
+}
+
+.question-box {
+	background-color: white;
+	border-radius: 2px;
+	height: 15em;
+	margin-top: 3em;
+	padding: 2em;
+}
+
+.temperature-box {
+	line-height: 5.5em;
+}
+
+.button-desktop {
+	display: none
+}
+
+.button-mobile {
+	display: block
+}
+
+.button-mobile .button {
+	height: 60px !important;
+	padding: 0 42px !important;
+	font-size: 14px !important;
+	line-height: 60px !important;
+}
+
+.button-mobile-column {
+	padding: 0.6em 5em;
+	margin-top: -1em;
+}
+
+@media (min-width: 750px) {
+	.main-container {
+		margin-top: 4.6em;
+		background: #f3f3f3;
+	    text-align: center;
+	    border-radius: 4px;
+	    font-size: 1rem;
+	    line-height: 30px;
+	    margin-bottom: 8em;
+	}
+
+	.question-box {
+		background-color: white;
+		border-radius: 2px;
+		height: 26em;
+		margin-top: 5em;
+		padding: 4em;
+	}
+
+	.temperature-box {
+		line-height: 8.5em;
+	}
+
+	.button-desktop {
+		display: block
+	}
+
+	.button-mobile {
+		display: none
+	}	
+}
+
+@media (min-width: 1000px) {
+	.content-column {
+		padding: 0 10em;
+	}
+}

@@ -1,95 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Tailor :: Weather Study</title>
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Tailor" />
-  <meta property="og:description"   content="Help us gather data on which clothes you would wear according to the weather, so we can build an Artificial Inteligence that creates smart outfit suggestions for you!" />
-  <meta property="og:image"         content="http://www.tailortags.com/static/img/Tailor-WeatherResearch_new.png" />
-  <link rel="image_src" href="http://www.tailortags.com/static/img/Tailor-WeatherResearch_new.png" />
+    <meta name="description" content="Tailor is an ambient intelligence system that uses technology embedded in clothing and sensor data, to power an artificial intelligence agent that can learn from their users and adapt according to their behavior.">
+    <meta name="author" content="Tailor">
+    <link rel="image_src" href="http://www.tailortags.com/img/fb-graph-Tailor.png" />
 
-  <meta name="description" content="Tailor :: AI Study">
-  <meta name="viewport" content="width=device-width">
-  <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/static/css/normalize.css">
-  <link rel="stylesheet" href="/static/css/skeleton.css">
-  <link rel="stylesheet" href="/static/css/style.css">
-  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <script type="text/javascript" src="//www.parsecdn.com/js/parse-latest.js"></script>
-  <script type="text/javascript" src="/static/js/app.js"></script>
-  <script type="text/javascript" src="/static/js/fastclick.min.js"></script>
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Tailor : The smart closet" />
+    <meta property="og:description"   content="Tailor is an ambient intelligence system that uses technology embedded in clothing and sensor data, to power an artificial intelligence agent that can learn from their users and adapt according to their behavior." />
+    <meta property="og:image"         content="http://www.tailortags.com/img/fb-graph-Tailor.png" />
+
+    <title>Tailor : The smart closet</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
-<body name="top">
-  <div class="menu">
-    <p class="logo"><a class="logo-link" href="/static/index.html">Tailor</a></p>
-    <p class="about"><a class="about-link" href="/static/about.html">About</a></p>
-  </div>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-  <div class="container">
-    <div class="row">
-      <div class="twelve column">
-        <div class="row title-row">
-          <p class="title center-aligned">Would you wear this?</p>
-        </div>
+    <!-- Video Overlay -->
+    <div class="overlay">
+      <div class="video-container">
+
+        <!-- SVG Close (X) Icon -->
+        <svg class="close" xmlns="http://www.w3.org/2000/svg" viewBox="39.2 22.3 25 24.5"><path d="M39.5,46.4c0.2,0.2,0.6,0.4,0.9,0.4c0.3,0,0.6-0.1,0.9-0.4l10.3-10.3L62,46.4c0.2,0.2,0.6,0.4,0.9,0.4c0.3,0,0.6-0.1,0.9-0.4c0.5-0.5,0.5-1.3,0-1.8L53.5,34.3l9.8-9.8c0.5-0.5,0.5-1.3,0-1.8c-0.5-0.5-1.3-0.5-1.8,0l-9.8,9.8l-9.8-9.8c-0.5-0.5-1.3-0.5-1.8,0c-0.5,0.5-0.5,1.3,0,1.8l9.8,9.8L39.5,44.6C39,45.1,39,45.9,39.5,46.4z"/></svg>
+
+        <!-- Embedded video -->
+        <iframe id="video" src="https://player.vimeo.com/video/169461085?api=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
       </div>
     </div>
-    <div class="row">
-      <div class="twelve column main-container">
-        <div class="row main-row">
-          <div class="one-third column question-box clothing-box">
-            <img class="clothingImage u-max-full-width"/>
-          </div>
-          <div class="one-third column question-box temperature-box">
-            <p class="temperature"></p>
-          </div>
-          <div class="one-third column question-box condition-box" style="padding: 2.6em 3em">
-          <img class="weatherConditionImage u-max-full-width"/>
-          </div>
-        </div>
 
-        <div class="row button-row button-desktop">
-          <div class="twelve column" style="text-align: center">
-            <a class="button button-primary" href="#top" onClick="recordYes()">Yes</a>&nbsp;&nbsp;
-            <a class="button button-primary" href="#top" onClick="recordNo()">No</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="button" href="#top" onClick="generateQuestion()" style="background-color: #fff">Next</a>
-          </div>
-        </div>
-
-        <div class="row button-row button-mobile">
-          <div class="twelve column" style="text-align: center">
-          <div class="row">
-            <div class="twelve column button-mobile-column">
-              <a class="button button-primary u-full-width" href="#top" onClick="recordYes()">Yes</a>
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> <span class="logo-text">Tailor</span>
+                </a>
             </div>
-          </div>
-          <div class="row">
-            <div class="twelve column button-mobile-column">
-              <a class="button button-primary u-full-width" href="#top" onClick="recordNo()">No</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="twelve column button-mobile-column">
-              <a class="button u-full-width" href="#top" onClick="generateQuestion()" style="background-color: #fff">Next</a>
-            </div>
-          </div>
-          </div>
         </div>
+        <!-- /.container -->
+    </nav>
 
-      </div>
-    </div>
-  </div>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="white-bg">&nbsp;</div>
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 intro-col">
+                        <div class="intro-button-container">
+                            <div class="intro-logo-container">
+                            <img class="img-logo" src="img/logo-Tailor.png" alt="Tailor">
+                            <p class="logo-text logo-big">Tailor</p>
+                            <p class="logo-subtext">The smart closet</p>
+                            </div>
+                            <button type="button" class="btn btn-gray play"><i class="fa fa-play-circle ico-play" aria-hidden="true"></i>
+                            Play Video</button>
+                            <p class="ico-down"><i class="fa fa-angle-down" aria-hidden="true"></i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row" >
+            <h2 style="margin-left: 15%; margin-right: 15%">Automatically tracks your clothes</h2>
+            <p style="margin-left: 15%; margin-right: 15%">Tailor uses miniature sensors embedded in your clothing to detect the items you own and track the garments you wear on a daily basis. All without requiring any user input.</p>
+            <img src="img/ui-scanning.gif" class="feature-image" alt="">
+        </div>
+        <div class="row">
+            <h2 style="margin-left: 15%; margin-right: 15%">Personalized outfit suggestions</h2>
+            <p style="margin-left: 15%; margin-right: 15%">Tailor's powerful artificial intelligence agent learns from you to understand your style and what you like to wear. Tailor helps you get dressed in the morning by offering you outfit suggestions that adjust to your preferences and are appropriate for the day's weather conditions.</p>
+            <img src="img/ui-suggestion.gif" class="feature-image" alt="">
+        </div>
+        <div class="row">
+            <h2 style="margin-left: 15%; margin-right: 15%">Explore your closet digitally</h2>
+            <p style="margin-left: 15%; margin-right: 15%">Tailor's intuitive user interface allows you to search, filter, and explore your closet from the comfort of your couch or even while you're away.</p>
+            <img src="img/ui-closet.gif" class="feature-image" alt="">
+        </div>
+    </section>
 
-    ga('create', 'UA-76043453-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+    <section id="register" class="container content-section text-center">
+        <div class="row">
+            <h2 id="register-title">Subscribe for updates</h2>
+            <form class="form-signin" style="padding-bottom: 128px">
+                <div class="row form-row" style="margin: auto">
+                <div class="col-md-3 col-register"></div>
+                <div class="col-md-4 col-register">
+                    <label for="inputEmail" class="sr-only">Enter your email address</label>
+                    <input type="email" name="email" id="inputEmail" class="form-control form-email" placeholder="Enter your email address" required="">
+                </div>
+                <div class="col-md-2 col-register">
+                    <button class="btn btn-lg btn-register btn-block" type="submit">Notify Me</button>
+                </div>
+                <div class="col-md-3 col-register"></div>
+                </div>
+            </form>
+
+
+          <center>
+          <div class="footer-container">
+              <img src="img/footer-Tailor.gif" width="128" alt="Tailor" class="pull-left">
+              <div class="pull-right" style="margin-top: 11px"><a class="btn-contact" href="mailto:matias@mseijas.com">Contact</a></div>
+          </div>
+          </center>
+        </div>
+    </section>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Video JavaScript -->
+    <script src="js/video.js"></script>
+
+    <!-- Parse -->
+    <script type="text/javascript" src="//www.parsecdn.com/js/parse-latest.js"></script>
+    <script src="js/parse.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-78879421-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
 </body>
 
 </html>

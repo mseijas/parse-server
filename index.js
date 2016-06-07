@@ -26,7 +26,7 @@ var api = new ParseServer({
 var app = express();
 
 // Config static middleware for assets
-app.use('/static', express.static(path.join(__dirname, '/public')));
+app.use('/', express.static(path.join(__dirname, '/public')));
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';

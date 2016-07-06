@@ -208,7 +208,7 @@ a:focus {
     display: none;
 }
 
-.play-button {
+.play {
     position: relative;
     z-index: 1;
 }

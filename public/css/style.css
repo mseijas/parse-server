@@ -555,7 +555,7 @@ body {
   /* Stays locked on scroll */
   position: fixed;
   /* On top of the rest*/
-  z-index: 2;
+  z-index: 9999;
   /* Hidden */
   opacity: 0;
   /* No interference */

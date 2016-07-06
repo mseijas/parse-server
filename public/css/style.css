@@ -208,6 +208,11 @@ a:focus {
     display: none;
 }
 
+.play-button {
+    position: relative;
+    z-index: 1;
+}
+
 @media(min-width:321px) {
     .intro .intro-body {
         padding-bottom: 0vh;

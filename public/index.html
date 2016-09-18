@@ -38,7 +38,10 @@
 
     <script type="text/javascript">
         function showVideoIfNeeded() {
-            console.log("showing vid");
+            if (location.search.substr(1) == "video") {
+                $('.overlay').css('left', 0)
+                $('.overlay').addClass('show')
+            }
         }
 
         window.onload = showVideoIfNeeded;
